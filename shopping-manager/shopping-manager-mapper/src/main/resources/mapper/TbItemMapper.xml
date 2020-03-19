@@ -32,12 +32,12 @@
     delete from tb_item
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.shopping.entity.TbItem" useGeneratedKeys="true">
-    insert into tb_item (title, sell_point, price, 
+  <insert id="insert"  parameterType="com.shopping.entity.TbItem" useGeneratedKeys="true">
+    insert into tb_item (id, title, sell_point, price,
       num, barcode, image, 
       cid, `status`, created, 
       updated)
-    values (#{title,jdbcType=VARCHAR}, #{sellPoint,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT}, 
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{sellPoint,jdbcType=VARCHAR}, #{price,jdbcType=BIGINT},
       #{num,jdbcType=INTEGER}, #{barcode,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
       #{cid,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, #{created,jdbcType=TIMESTAMP}, 
       #{updated,jdbcType=TIMESTAMP})

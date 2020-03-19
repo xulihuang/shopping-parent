@@ -3,7 +3,7 @@ package com.shopping.service.impl;
 import com.shopping.service.PictureService;
 import com.shopping.universal.PictureResult;
 import com.shopping.util.FtpUtil;
-import com.shopping.util.ImageUtil;
+import com.shopping.util.IdUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -56,7 +56,7 @@ public class PictureServiceImpl implements PictureService {
                 // 取原始文件名
                 String originalFilename = multipartFile.getOriginalFilename();
                 // 新文件名
-                String newFileName = ImageUtil.getImageName() +
+                String newFileName = IdUtil.getImageName() +
                         originalFilename.substring(originalFilename.lastIndexOf("."));
                 // 上传图片
                 FtpUtil.uploadFile(FTP_SERVER_IP, FTP_SERVER_PORT, FTP_SERVER_USERNAME
