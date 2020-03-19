@@ -37,8 +37,7 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public PictureResult uploadFile(MultipartFile uploadFile) {
-        String pictureUrl = savePicture(uploadFile);
-        return PictureResult.result(0, IMAGE_BASE_URL + pictureUrl);
+        return savePicture(uploadFile);
     }
 
     /**
@@ -46,7 +45,7 @@ public class PictureServiceImpl implements PictureService {
      * @param multipartFile
      * @return
      */
-    private String savePicture(MultipartFile multipartFile) {
+    private PictureResult savePicture(MultipartFile multipartFile) {
         String pictureUrl = null;
         try {
             if (!multipartFile.isEmpty()) {
@@ -67,7 +66,8 @@ public class PictureServiceImpl implements PictureService {
             }
         } catch (Exception e) {
             log.error("上传文件失败：" + e.getMessage());
+            return PictureResult.result(1, null, "上传文件失败");
         }
-        return pictureUrl;
+        return PictureResult.result(0, IMAGE_BASE_URL + pictureUrl);
     }
 }
