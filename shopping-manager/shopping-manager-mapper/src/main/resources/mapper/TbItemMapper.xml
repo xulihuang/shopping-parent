@@ -32,6 +32,13 @@
     delete from tb_item
     where id = #{id,jdbcType=BIGINT}
   </delete>
+  <delete id="deleteItems" parameterType="java.util.List">
+    delete from tb_item
+    where id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+        #{item,jdbcType=BIGINT}
+    </foreach>
+  </delete>
   <insert id="insert"  parameterType="com.shopping.entity.TbItem" useGeneratedKeys="true">
     insert into tb_item (id, title, sell_point, price,
       num, barcode, image, 

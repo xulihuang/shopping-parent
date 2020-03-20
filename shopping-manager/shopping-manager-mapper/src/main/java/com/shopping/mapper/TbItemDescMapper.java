@@ -2,6 +2,8 @@ package com.shopping.mapper;
 
 import com.shopping.entity.TbItemDesc;
 
+import java.util.List;
+
 public interface TbItemDescMapper {
     int deleteByPrimaryKey(Long itemId);
 
@@ -14,4 +16,6 @@ public interface TbItemDescMapper {
     int updateByPrimaryKeySelective(TbItemDesc record);
 
     int updateByPrimaryKey(TbItemDesc record);
+
+    int deleteItemDesc(List<Long> ids);
 }

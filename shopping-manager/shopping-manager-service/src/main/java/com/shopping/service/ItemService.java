@@ -11,5 +11,7 @@ public interface ItemService {
 
     List<TbItem> getItemList(Integer page, Integer row);
 
-    ShoppingResult createItem(TbItem item);
+    ShoppingResult createItem(TbItem item, String desc);
+
+    void deleteItems(List<Long> ids);
 }

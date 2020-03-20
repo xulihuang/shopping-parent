@@ -20,10 +20,18 @@
     delete from tb_item_desc
     where item_id = #{itemId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" keyColumn="item_id" keyProperty="itemId" parameterType="com.shopping.entity.TbItemDesc" useGeneratedKeys="true">
-    insert into tb_item_desc (item_desc, created, updated
+
+  <delete id="deleteItemDesc" parameterType="java.util.List">
+    delete from tb_item_desc
+    where item_id in
+    <foreach collection="list" item="item" open="(" separator="," close=")">
+      #{item,jdbcType=BIGINT}
+    </foreach>
+  </delete>
+  <insert id="insert" parameterType="com.shopping.entity.TbItemDesc" useGeneratedKeys="true">
+    insert into tb_item_desc (item_id, item_desc, created, updated
       )
-    values (#{itemDesc,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}
+    values (#{itemId,jdbcType=BIGINT}, #{itemDesc,jdbcType=VARCHAR}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" keyColumn="item_id" keyProperty="itemId" parameterType="com.shopping.entity.TbItemDesc" useGeneratedKeys="true">

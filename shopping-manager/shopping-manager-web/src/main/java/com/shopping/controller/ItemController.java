@@ -7,7 +7,6 @@ import com.shopping.universal.RestResponse;
 import com.shopping.entity.TbItem;
 import com.shopping.service.ItemService;
 import com.shopping.universal.ShoppingResult;
-import com.sun.tools.javac.jvm.Items;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,11 +43,12 @@ public class ItemController {
     /**
      * 新增商品
      * @param item
+     * @param desc
      * @return ShoppingResult
      */
     @RequestMapping(value = "/save", method = {RequestMethod.POST})
     @ResponseBody
-    public ShoppingResult saveItem(TbItem item) {
-        return itemService.createItem(item);
+    public ShoppingResult saveItem(TbItem item, String desc) {
+        return itemService.createItem(item, desc);
     }
 }
