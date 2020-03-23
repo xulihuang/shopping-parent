@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * @Author: xlh
@@ -33,7 +32,7 @@ public class ItemVo implements Serializable {
     /**
      * 商品价格，单位为：分
      */
-    private String price;
+    private long price;
 
     /**
      * 库存数量
@@ -56,19 +55,9 @@ public class ItemVo implements Serializable {
     private String cid;
 
     /**
-     * 创建时间
-     */
-    private Date created;
-
-    /**
-     * 更新时间
-     */
-    private Date updated;
-
-    /**
      * 商品描述
      */
-    private String itemDesc;
+    private String desc;
 
     private String[] itemParams;
 

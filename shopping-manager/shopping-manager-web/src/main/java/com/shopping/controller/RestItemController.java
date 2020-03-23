@@ -1,9 +1,8 @@
 package com.shopping.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.JSONPObject;
 import com.shopping.constants.CommonConstants;
 import com.shopping.entity.TbItem;
+import com.shopping.entity.TbItemDesc;
 import com.shopping.service.ItemDescService;
 import com.shopping.service.ItemService;
 import com.shopping.universal.ShoppingResult;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -77,12 +77,34 @@ public class RestItemController {
      */
     @RequestMapping(value = "/update", method = {RequestMethod.POST})
     @ResponseBody
-    public ShoppingResult updateItem(TbItem item) {
+    public ShoppingResult updateItem(ItemVo item) {
+        // 根据商品ID查询商品
+        TbItem resultItem = itemService.selectByPrimaryKey(Long.valueOf(item.getId()));
+        BeanUtils.copyProperties(item, resultItem);
+        resultItem.setUpdated(new Date());
         // 更新商品
-//        TbItem item = new TbItem();
-//        BeanUtils.copyProperties(itemVo, item);
-
+        itemService.updateItem(resultItem);
+        // 根据商品ID获取商品描述
+        TbItemDesc itemDesc = descService.getItemDescByItemId(item.getId());
+        itemDesc.setItemDesc(item.getDesc())
+                .setUpdated(new Date());
         // 更新商品描述
+        descService.updateItemDesc(itemDesc);
+        return ShoppingResult.ok();
+    }
+
+    /**
+     * 下架商品
+     * @param ids
+     * @return
+     */
+    @RequestMapping(value = "/inStock", method = {RequestMethod.POST})
+    @ResponseBody
+    public ShoppingResult inStock(String ids) {
+        List<Long> longList = Arrays.stream(ids.split(","))
+                .map(e -> Long.parseLong(e.trim()))
+                .collect(Collectors.toList());
+        itemService.inStock(longList);
         return ShoppingResult.ok();
     }
 

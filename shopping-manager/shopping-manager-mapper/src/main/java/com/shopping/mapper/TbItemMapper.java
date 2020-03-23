@@ -20,4 +20,8 @@ public interface TbItemMapper {
     List<TbItem> selectItemList();
 
     int deleteItems(List<Long> ids);
+
+    List<TbItem> selectItemListByIds(List<Long> ids);
+
+    int updateBatch(List<TbItem> items);
 }

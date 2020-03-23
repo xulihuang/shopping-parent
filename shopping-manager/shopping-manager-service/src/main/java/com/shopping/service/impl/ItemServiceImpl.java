@@ -84,4 +84,16 @@ public class ItemServiceImpl implements ItemService {
     public void updateItem(TbItem tbItem) {
         itemMapper.updateByPrimaryKeySelective(tbItem);
     }
+
+    /**
+     * 下架商品
+     * @param ids
+     */
+    @Override
+    public void inStock(List<Long> ids) {
+        List<TbItem> items = itemMapper.selectItemListByIds(ids);
+        items.forEach(e -> e.setStatus((byte)2)
+                .setUpdated(new Date()));
+        itemMapper.updateBatch(items);
+    }
 }

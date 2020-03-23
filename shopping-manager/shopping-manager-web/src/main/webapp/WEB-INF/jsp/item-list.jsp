@@ -139,7 +139,7 @@
         	$.messager.confirm('确认','确定下架ID为 '+ids+' 的商品吗？',function(r){
         	    if (r){
         	    	var params = {"ids":ids};
-                	$.post("/rest/item/instock",params, function(data){
+                	$.post("/rest/item/inStock",params, function(data){
             			if(data.status == 200){
             				$.messager.alert('提示','下架商品成功!',undefined,function(){
             					$("#itemList").datagrid("reload");

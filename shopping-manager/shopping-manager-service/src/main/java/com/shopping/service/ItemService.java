@@ -16,4 +16,6 @@ public interface ItemService {
     void deleteItems(List<Long> ids);
 
     void updateItem(TbItem tbItem);
+
+    void inStock(List<Long> ids);
 }
