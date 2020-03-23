@@ -14,4 +14,6 @@ public interface ItemService {
     ShoppingResult createItem(TbItem item, String desc);
 
     void deleteItems(List<Long> ids);
+
+    void updateItem(TbItem tbItem);
 }

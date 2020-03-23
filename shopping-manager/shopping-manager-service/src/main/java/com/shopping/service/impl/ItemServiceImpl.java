@@ -75,4 +75,13 @@ public class ItemServiceImpl implements ItemService {
     public void deleteItems(List<Long> ids) {
         itemMapper.deleteItems(ids);
     }
+
+    /**
+     * 更新商品
+     * @param tbItem
+     */
+    @Override
+    public void updateItem(TbItem tbItem) {
+        itemMapper.updateByPrimaryKeySelective(tbItem);
+    }
 }

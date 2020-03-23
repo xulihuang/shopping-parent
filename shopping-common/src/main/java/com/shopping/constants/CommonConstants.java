@@ -15,4 +15,6 @@ public interface CommonConstants {
     String PIC = "/pic";
 
     String REST_ITEM = "/rest/item";
+
+    String REST_PAGE = "/rest/page/";
 }

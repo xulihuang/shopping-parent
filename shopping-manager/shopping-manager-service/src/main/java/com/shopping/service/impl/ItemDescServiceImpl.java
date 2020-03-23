@@ -24,9 +24,32 @@ public class ItemDescServiceImpl implements ItemDescService {
         itemDescMapper.insert(itemDesc);
     }
 
+    /**
+     * 根据商品ID批量删除描述信息
+     * @param ids
+     */
     @Override
     public void deleteItemDesc(List<Long> ids) {
         itemDescMapper.deleteItemDesc(ids);
+    }
+
+    /**
+     * 根据商品ID获取描述
+     * @param id
+     * @return
+     */
+    @Override
+    public TbItemDesc getItemDescByItemId(String id) {
+        return itemDescMapper.selectByPrimaryKey(Long.parseLong(id));
+    }
+
+    /**
+     * 更新商品描述
+     * @param itemDesc
+     */
+    @Override
+    public void updateItemDesc(TbItemDesc itemDesc) {
+        itemDescMapper.updateByPrimaryKeySelective(itemDesc);
     }
 
 }

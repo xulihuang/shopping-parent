@@ -14,4 +14,8 @@ public interface ItemDescService {
     void saveItemDesc(TbItemDesc itemDesc);
 
     void deleteItemDesc(List<Long> ids);
+
+    TbItemDesc getItemDescByItemId(String id);
+
+    void updateItemDesc(TbItemDesc itemDesc);
 }

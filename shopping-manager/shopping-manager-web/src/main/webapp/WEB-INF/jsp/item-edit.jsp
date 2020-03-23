@@ -5,6 +5,8 @@
 <div style="padding:10px 10px 10px 10px">
 	<form id="itemeEditForm" class="itemForm" method="post">
 		<input type="hidden" name="id"/>
+		<input type="hidden" name="created"/>
+		<input type="hidden" name="updated"/>
 	    <table cellpadding="5">
 	        <tr>
 	            <td>商品类目:</td>
@@ -57,8 +59,8 @@
 	        	</td>
 	        </tr>
 	    </table>
-	    <input type="hidden" name="itemParams"/>
-	    <input type="hidden" name="itemParamId"/>
+<%--	    <input type="hidden" name="itemParams"/>--%>
+<%--	    <input type="hidden" name="itemParamId"/>--%>
 	</form>
 	<div style="padding:5px">
 	    <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">提交</a>
@@ -99,7 +101,7 @@
 		paramJson = JSON.stringify(paramJson);
 		
 		$("#itemeEditForm [name=itemParams]").val(paramJson);
-		
+
 		$.post("/rest/item/update",$("#itemeEditForm").serialize(), function(data){
 			if(data.status == 200){
 				$.messager.alert('提示','修改商品成功!','info',function(){
